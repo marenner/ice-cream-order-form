@@ -5,42 +5,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ice Cream Order Form</title>
 
+    <link rel="stylesheet" href="Styles/ice-cream.css">
     <link rel="icon" href="Images/ice-cream-cone-icon.webp">
 </head>
 <body>
-    <h1>Ice Cream Order Form</h1>
-    <form id="order-form" action="#" method="get">
-        <fieldset>
-            <legend>Personal Information</legend>
-            <label for="name">Name: </label>
-            <input type="text" id="name" name="name">
-            <label for="email">Email: </label>
-            <input type="email" id="email" name="email">
-        </fieldset>
+    <div id="main">
+        <div id="header">
+            <img src="Images/ice-cream-cone.png" alt="An image of an ice cream cone">
+            <h1>Ice Cream Order Form</h1>
+        </div>
+        <form id="order-form" action="#" method="get">
+            <fieldset>
+                <legend>Personal Information</legend>
+                <label for="name">Name: </label>
+                <input type="text" id="name" name="name">
+                <label for="email">Email: </label>
+                <input type="email" id="email" name="email">
+            </fieldset>
 
-        <fieldset>
-            <legend>Order Details</legend>
-            <label for="flavor">Choose your flavor:</label>
-            <select id="flavor" name="flavor">
-                    <option value="none">--- Select a flavor ---</option>
-                    <option value="small">Vanilla</option>
-                    <option value="medium">Chocolate</option>
-                    <option value="large">Peach</option>
-            </select>
-        </fieldset>
+            <fieldset>
+                <legend>Order Details</legend>
+                <label for="flavor">Choose your flavor:</label>
+                <select id="flavor" name="flavor">
+                        <option value="none">--- Select a flavor ---</option>
+                        <option value="small">Vanilla</option>
+                        <option value="medium">Chocolate</option>
+                        <option value="large">Peach</option>
+                </select>
+            </fieldset>
 
-        <fieldset>
+            <fieldset>
                 <legend>Choose your cone:</legend>
                 <label for="waffle">
-                    <input type="radio" id="waffle" name="method" value="waffle">
+                    <input type="radio" id="waffle" name="cone" value="waffle">
                     Waffle Cone
                 </label>
                 <label for="sugar">
-                    <input type="radio" id="sugar" name="method" value="sugar">
+                    <input type="radio" id="sugar" name="cone" value="sugar">
                     Sugar Cone
                 </label>
                 <label for="cup">
-                    <input type="radio" id="cup" name="method" value="cup">
+                    <input type="radio" id="cup" name="cone" value="cup">
                     Cup
                 </label>
             </fieldset>
@@ -67,10 +72,11 @@
 
             <fieldset>
                 <legend>Additional comments:</legend>
-                <textarea></textarea>
+                <textarea rows="5" id="comment" name="comment"></textarea>
             </fieldset>
 
             <button type="submit" id="order-button">Submit Order</button>
-    </form>
+        </form>
+    </div>
 </body>
 </html>
