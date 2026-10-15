@@ -56,3 +56,13 @@ label {
 textarea {
     resize: none;
 }
+.err {
+    color: red;
+    font-size: 10pt;
+    padding-left: 1rem;
+    padding-bottom: 0.5rem;
+    display: none;
+}
+input[type="radio"], input[type="checkbox"] {
+    margin-bottom: 1rem;
+}

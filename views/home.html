@@ -7,6 +7,7 @@
 
     <link rel="stylesheet" href="styles/ice-cream.css">
     <link rel="icon" href="images/ice-cream-cone-icon.webp">
+    <script src="js/ice-cream.js" defer></script>
 </head>
 <body>
     <div id="main">
@@ -19,8 +20,10 @@
                 <legend>Personal Information</legend>
                 <label for="name">Name: </label>
                 <input type="text" id="name" name="name">
+                <span class="err" id="err-name">Please enter a name.</span>
                 <label for="email">Email: </label>
                 <input type="email" id="email" name="email">
+                <span class="err" id="err-email">Please enter a valid email address.</span>
             </fieldset>
 
             <fieldset>
@@ -32,6 +35,7 @@
                         <option value="medium">Chocolate</option>
                         <option value="large">Peach</option>
                 </select>
+                <span class="err" id="err-flavor">Please select a flavor.</span>
             </fieldset>
 
             <fieldset>
@@ -48,6 +52,7 @@
                     <input type="radio" id="cup" name="cone" value="cup">
                     Cup
                 </label>
+                <span class="err" id="err-cone">Please select a cone type.</span>
             </fieldset>
 
             <fieldset>
