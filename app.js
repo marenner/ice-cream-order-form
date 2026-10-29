@@ -4,6 +4,8 @@ const app = express();
 
 const PORT = 3001;
 
+const order = [];
+
 app.use(express.static('public'));
 
 app.use(express.urlencoded({extended: true}));
@@ -17,6 +19,24 @@ app.get ('/', (req, res) => {
 // add a confirmed route to display the confirmed page
 app.get('/confirm-order', (req, res) => {
     res.render('confirm');
+});
+
+// add a route to process the icecream order form submission
+app.post('/submit-order', (req, res) => {
+    const order = req.body;
+    order['timestamp'] = new Date();
+
+    console.log(order);
+
+    orders.push(order);
+    console.log(orders);
+
+    res.render('confirm', {order});
+});
+
+// Add an admin route
+app.get('/admin', (req, res) => {
+    res.render('admin', {orders});
 });
 
 app.listen(PORT, () => {
