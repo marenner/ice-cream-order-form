@@ -47,16 +47,41 @@ app.get('/confirm-order', (req, res) => {
 });
 
 // add a route to process the icecream order form submission
-app.post('/submit-order', (req, res) => {
-    const order = req.body;
-    order['timestamp'] = new Date();
+app.post('/submit-order', async(req, res) => {
+    try {
+        const order = req.body;
+        order.timestamp = new Date();
 
-    console.log(order);
+        console.log('New order submitted: ', order);
 
-    orders.push(order);
-    console.log(orders);
+        order.toppings = Array.isArray(order.toppings) ?
+            order.toppings.join(", ") : "";
 
-    res.render('confirm', {order});
+        
+        const sql = 
+            `INSERT INTO orders(customer, email, flavor, cone, toppings, comment)
+            VALUES (?, ?, ?, ?, ?, ?);`;
+
+        const params = [
+            order.name,
+            order.email,
+            order.flavor,
+            order.cone,
+            order.toppings,
+            order.comments
+        ];
+
+        const [result] = await pool.execute(sql, params);
+
+        order.id = result.insertId;
+        console.log('Order saved with ID: ', order.id);
+
+        res.render('confirm', {order});
+
+    } catch (err) {
+        console.error('Error saving order: ', err);
+        res.status(500).send(`Sorry, there was an error processing your order. Please try again.`);
+    }
 });
 
 // Add an admin route
