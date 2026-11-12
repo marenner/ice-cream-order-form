@@ -24,6 +24,17 @@ app.use(express.urlencoded({extended: true}));
 
 app.set('view engine', 'ejs');
 
+app.get('/db-test', async (req, res) => {
+    try {
+        const orders = await pool.query('SELECT * FROM orders');
+        res.send(orders[0]);
+    } catch (error) {
+        console.error('Database Error:', error);
+        res.status(500).send('Database Error');
+    }
+
+});  
+
 app.get ('/', (req, res) => {
     res.render('home');
 })
