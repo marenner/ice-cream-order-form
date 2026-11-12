@@ -24,6 +24,7 @@ app.use(express.urlencoded({extended: true}));
 
 app.set('view engine', 'ejs');
 
+/*
 app.get('/db-test', async (req, res) => {
     try {
         const orders = await pool.query('SELECT * FROM orders');
@@ -34,6 +35,7 @@ app.get('/db-test', async (req, res) => {
     }
 
 });  
+*/
 
 app.get ('/', (req, res) => {
     res.render('home');
@@ -58,8 +60,15 @@ app.post('/submit-order', (req, res) => {
 });
 
 // Add an admin route
-app.get('/admin', (req, res) => {
-    res.render('admin', {orders});
+app.get('/admin',async (req, res) => {
+
+    try {
+        const [orders] = await pool.query('SELECT * FROM orders');
+        res.render('admin', {orders});
+    } catch (error) {
+        console.error('Database Error:', error);
+        res.status(500).send('Database Error Occured');
+    }
 });
 
 app.listen(PORT, () => {
