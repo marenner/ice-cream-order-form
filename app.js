@@ -102,7 +102,7 @@ app.post('/submit-order', async(req, res) => {
 });
 
 // Add an admin route
-app.get('/admin',async (req, res) => {
+app.get('/admin',requireLogin, async (req, res) => {
 
     try {
         const [orders] = await pool.query('SELECT * FROM orders');
@@ -111,6 +111,12 @@ app.get('/admin',async (req, res) => {
         console.error('Database Error:', error);
         res.status(500).send('Database Error Occured');
     }
+});
+
+app.get('/logout', (req, res) => {
+    req.session.destroy(() => {
+        res.redirect('/login');
+    });
 });
 
 app.listen(PORT, () => {
