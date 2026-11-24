@@ -2,6 +2,7 @@ import express from 'express';
 import mysql2 from 'mysql2';
 import dotenv from 'dotenv';
 dotenv.config();
+import session from 'express-session';
 
 // Create a connection pool to the MySQL database
 const pool = mysql2.createPool({
@@ -23,6 +24,14 @@ app.use(express.static('public'));
 app.use(express.urlencoded({extended: true}));
 
 app.set('view engine', 'ejs');
+
+// Session middleware: lets the server remember users between requests
+app.use(session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    cookie: { maxAge: 1000 * 60 * 60 } // 1 hour
+}))
 
 /*
 app.get('/db-test', async (req, res) => {
