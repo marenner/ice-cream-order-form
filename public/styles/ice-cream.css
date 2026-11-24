@@ -31,7 +31,7 @@ form {
     margin: 0 auto;
     padding: 0 1rem 2rem 1rem;
 }
-input[type="text"], input[type="email"], select, textarea {
+input[type="text"], input[type="email"], input[type="passowrd"] select, textarea {
     width: 100%;
     border: 1px solid darkblue;
     border-radius: .25em;
@@ -65,4 +65,9 @@ textarea {
 }
 input[type="radio"], input[type="checkbox"] {
     margin-bottom: 1rem;
+}
+
+.login-error {
+    color: darkred;
+    font-weight: bold;
 }
