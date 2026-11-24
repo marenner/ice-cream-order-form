@@ -31,7 +31,15 @@ app.use(session({
     resave: false,
     saveUninitialized: false,
     cookie: { maxAge: 1000 * 60 * 60 } // 1 hour
-}))
+}));
+
+function requireLogin(req, res, next) {
+    if (req.session.loggedIn) {
+        next();
+    } else {
+        res.redirect('/login');
+    }
+}
 
 /*
 app.get('/db-test', async (req, res) => {
