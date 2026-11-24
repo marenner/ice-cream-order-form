@@ -101,6 +101,24 @@ app.post('/submit-order', async(req, res) => {
     }
 });
 
+app.get('/login', (req, res) => {
+    res.render('login', {error : false});
+});
+
+app.post('/login', (req, res) => {
+    const username = req.body.username;
+    const password = req.body.password;
+
+    // Compare the form values to the values in .env
+    if (username === process.env.ADMIN_USER && 
+        password === process.env.ADMIN_PASSWORD) {
+        req.session.loggedIn = true;
+        res.redirect('/admin');
+    } else {
+        res.render('login', {error : 'Invalid username or password.'});
+    }
+});
+
 // Add an admin route
 app.get('/admin',requireLogin, async (req, res) => {
 
